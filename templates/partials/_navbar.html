@@ -2,7 +2,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
 	<div class="container">
-		<a class="navbar-brand" href="index.html">
+		<a class="navbar-brand" href="{% url 'index' %}">
 			<img src="{% static 'img/logo.png' %}" class="logo" alt="" />
 		</a>
 		<button
@@ -52,7 +52,7 @@
 					class="nav-item mr-3"
 					{% endif %}
 				>
-					<a class="nav-link" href="{% url 'index' %}">
+					<a class="nav-link" href="{% url 'register' %}">
 						<i class="fas fa-user-plus"></i> Register</a
 					>
 				</li>
@@ -63,7 +63,7 @@
 					class="nav-item mr-3"
 					{% endif %}
 				>
-					<a class="nav-link" href="{% url 'index' %}">
+					<a class="nav-link" href="{% url 'login' %}">
 						<i class="fas fa-sign-in-alt"></i>
 						Login
 					</a>
