@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -30,12 +30,27 @@ def register(request):
 
 def login(request):
   if request.method == "POST":
-    print("register")
-    # redirect("index")
+    username = request.POST["username"]
+    password = request.POST["password"]
+    
+    user = auth.authenticate(username=username, password=password)
+    
+    if user is not None:
+      auth.login(request, user)
+    else:
+      messages.error(request, "Invalid credentials")
+      return redirect("login")
+      
+    messages.success(request, "You are logged in!")
+    return redirect("dashboard")
+    
   return render(request, 'accounts/login.html')
 
 def dashboard(request):
   return render(request, 'accounts/dashboard.html')
 
 def logout(request):
-  return redirect('index')
+  if request.method == "POST":
+    auth.logout(request)
+    messages.success(request, "You are now logged out")
+    return redirect('index')
