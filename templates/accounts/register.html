@@ -11,31 +11,34 @@
               <i class="fas fa-user-plus"></i> Register</h4>
           </div>
           <div class="card-body">
-              <form action="{% url 'register' %}" mthod="POST">
+            <!-- Alerts -->
+            {% include 'partials/_alerts.html' %}
+              <div>{{ message }}</div>
+              <form action="{% url 'register' %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                 <label for="first_name">First Name</label>
-                <input type="text" name="first_name" class="form-control" required>
+                <input type="text" name="first_name" class="form-control" placeholder="Enter first name" required>
               </div>
               <div class="form-group">
                 <label for="last_name">Last Name</label>
-                <input type="text" name="last_name" class="form-control" required>
+                <input type="text" name="last_name" class="form-control" placeholder="Enter last name" required>
               </div>
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" required>
+                <input type="text" name="username" class="form-control" placeholder="Enter username" required>
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" class="form-control" required>
+                <input type="email" name="email" class="form-control" placeholder="Enter email" required>
               </div>
               <div class="form-group">
                 <label for="password2">Password</label>
-                <input type="password" name="password" class="form-control" required>
+                <input type="password" name="password" class="form-control" placeholder="Enter password" required>
               </div>
               <div class="form-group">
                 <label for="password">Confirm Password</label>
-                <input type="password" name="password2" class="form-control" required>
+                <input type="password" name="password2" class="form-control" placeholder="Confirm password" required>
               </div>
               <input type="submit" value="Register" class="btn btn-secondary btn-block">
             </form>
