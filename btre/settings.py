@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'btredb',
         'USER': 'postgres',
         'PASSWORD': 'Pg@123',
-        'HOST': '127.0.0.1'
+        'HOST': 'https://real-estate-application.herokuapp.com/'
     }
 }
 
