@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 
 from .models import Contact
 
@@ -29,13 +29,12 @@ def contact(request):
     
     contact.save()
     
-    send_mail(
-      'Porperty Listing Inquiry', # subject
-      'There has been an inquiry for' + listing + '. Sign into the admin panel for more info', # body
-      'info.enigamado@gmail.com', # from
-      [realtor_email, 'ichankabir@gmail.com'],
-      fail_silently = False
-    )
+    email = EmailMessage(
+      subject='Porperty Listing Inquiry', 
+      body='There has been an inquiry for' + listing + '. Sign into the admin panel for more info', 
+      to=[realtor_email, 'ichankabir@gmail.com'], 
+      from_email='BT Real Estate <info.cipher.dev@gmail.com>')
+    email.send()
     
     messages.success(request, "Your request has been submitted, a realtor will get back to you")
     return redirect('/listings/' + listing_id)
